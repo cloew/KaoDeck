@@ -1,3 +1,4 @@
+from random import shuffle
 
 class Deck:
     """ Represents any deck of items """
@@ -20,6 +21,10 @@ class Deck:
             if item is not None:
                 items.append(item)
         return items
+        
+    def shuffle(self):
+        """ Shuffle the deck """
+        shuffle(self.__contents__)
         
     def __draw_one__(self):
         """ Draws a single item """
