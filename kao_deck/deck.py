@@ -2,9 +2,14 @@
 class Deck:
     """ Represents any deck of items """
     
-    def __init__(self, items):
+    def __init__(self, items=None, deck_initializer=None):
         """ Initialize the Deck """
-        self.__contents__ = items
+        if items is not None:
+            self.__contents__ = items
+        elif deck_initializer is not None:
+            self.__contents__ = deck_initializer.contents()
+        else:
+            raise TypeError("No Item List or Deck Initializer provided")
         self.__discard_pile__ = []
       
     
