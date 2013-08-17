@@ -12,4 +12,17 @@ class Deck:
             raise TypeError("No Item List or Deck Initializer provided")
         self.__discard_pile__ = []
       
-    
+    def draw(self, count=1):
+        """ Returns a list of cards removed from the top of the deck """
+        cards = []
+        for i in range(count):
+            card = self.__draw_one__()
+            if card is not None:
+                cards.append(card)
+        return cards
+        
+    def __draw_one__(self):
+        """ Draws a single card """
+        if len(self.deck) == 0:
+            return None
+        return self.deck.pop()
