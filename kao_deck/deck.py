@@ -8,7 +8,7 @@ class Deck:
         if items is not None:
             self.__contents__ = items
         elif deck_initializer is not None:
-            self.__contents__ = deck_initializer.contents()
+            self.__contents__ = deck_initializer.contents
         else:
             raise TypeError("No Item List or Deck Initializer provided")
         self.__disitem_pile__ = []
@@ -28,6 +28,6 @@ class Deck:
         
     def __draw_one__(self):
         """ Draws a single item """
-        if len(self.deck) == 0:
+        if len(self.__contents__) == 0:
             return None
-        return self.deck.pop()
+        return self.__contents__.pop()

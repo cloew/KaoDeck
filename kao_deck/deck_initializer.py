@@ -18,4 +18,4 @@ class DeckInitializer:
     @property
     def contents(self):
         """ Return the Deck Initializers Contents """
-        return __contents__
+        return self.__contents__
