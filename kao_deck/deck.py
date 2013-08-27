@@ -30,6 +30,10 @@ class Deck:
         """ Shuffle the deck """
         shuffle(self.__contents__)
         
+    def topOfDiscardPile(self):
+        """ Return the card on top of the discard pile """
+        return self.__discard_pile__[-1]
+        
     def __draw_one__(self):
         """ Draws a single item """
         if len(self.__contents__) == 0:
