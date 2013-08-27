@@ -11,7 +11,7 @@ class Deck:
             self.__contents__ = deck_initializer.contents
         else:
             raise TypeError("No Item List or Deck Initializer provided")
-        self.__disitem_pile__ = []
+        self.__discard_pile__ = []
       
     def draw(self, count=1):
         """ Returns a list of items removed from the top of the deck """
@@ -21,6 +21,10 @@ class Deck:
             if item is not None:
                 items.append(item)
         return items
+        
+    def discard(self, item):
+        """ Discard the given item """
+        self.__discard_pile__.append(item)
         
     def shuffle(self):
         """ Shuffle the deck """
