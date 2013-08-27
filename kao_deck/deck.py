@@ -15,12 +15,11 @@ class Deck:
       
     def draw(self, count=1):
         """ Returns a list of items removed from the top of the deck """
-        items = []
-        for i in range(count):
-            item = self.__draw_one__()
-            if item is not None:
-                items.append(item)
-        return items
+        return self.__draw__(self.__contents__, count)
+        
+    def drawFromDiscardPile(self, count=1):
+        """ Draw from the discard Pile """
+        return self.__draw__(self.__discard_pile__, count)
         
     def discard(self, item):
         """ Discard the given item """
@@ -32,10 +31,22 @@ class Deck:
         
     def topOfDiscardPile(self):
         """ Return the card on top of the discard pile """
-        return self.__discard_pile__[-1]
-        
-    def __draw_one__(self):
-        """ Draws a single item """
-        if len(self.__contents__) == 0:
+        if len(self.__discard_pile__) > 0:
+            return self.__discard_pile__[-1]
+        else:
             return None
-        return self.__contents__.pop()
+        
+    def __draw__(self, contents, count):
+        """ Draw count items """
+        items = []
+        for i in range(count):
+            item = self.__draw_one__(contents)
+            if item is not None:
+                items.append(item)
+        return items
+        
+    def __draw_one__(self, contents):
+        """ Draws a single item """
+        if len(contents) == 0:
+            return None
+        return contents.pop()
