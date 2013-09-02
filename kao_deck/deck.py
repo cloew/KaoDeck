@@ -3,7 +3,7 @@ from random import shuffle
 class Deck:
     """ Represents any deck of items """
     
-    def __init__(self, items=None, deck_initializer=None, reshuffle=False):
+    def __init__(self, items=None, deck_initializer=None):
         """ Initialize the Deck """
         if items is not None:
             self.__contents__ = items
@@ -11,37 +11,29 @@ class Deck:
             self.__contents__ = deck_initializer.contents
         else:
             raise TypeError("No Item List or Deck Initializer provided")
-        self.__discard_pile__ = []
-        self.__reshuffle__ = reshuffle
       
     def draw(self, count=1):
         """ Returns a list of items removed from the top of the deck """
         return self.__draw__(self.__contents__, count)
         
-    def drawFromDiscardPile(self, count=1):
-        """ Draw from the discard Pile """
-        return self.__draw__(self.__discard_pile__, count)
+    def add(self, items):
+        """ Add the items to the Deck """
+        for item in items:
+            self.__contents__.append(item)
         
-    def discard(self, item):
-        """ Discard the given item """
-        self.__discard_pile__.append(item)
+    def peek(self):
+        """ Peek at the top item of the deck """
+        if self.hasContents():
+            return self.__contents__[-1]
+        return None
         
     def shuffle(self):
         """ Shuffle the deck """
         shuffle(self.__contents__)
         
-    def topOfDiscardPile(self):
-        """ Return the card on top of the discard pile """
-        if len(self.__discard_pile__) > 0:
-            return self.__discard_pile__[-1]
-        else:
-            return None
-            
-    def shuffleInDiscardPile(self):
-        """ Shuffle the contents of the discard pile onto the deck """
-        cards = self.drawFromDiscardPile(count=len(self.__discard_pile__))
-        self.__contents__ += cards
-        self.shuffle()
+    def hasContents(self):
+        """ Returns if the deck has contents """
+        return len(self) > 0
         
     def __draw__(self, contents, count):
         """ Draw count items """
@@ -54,10 +46,10 @@ class Deck:
         
     def __draw_one__(self, contents):
         """ Draws a single item """
-        if len(contents) == 0:
-            if self.__reshuffle__:
-                self.shuffleInDiscardPile()
-            if len(contents) != 0:
-                return contents.pop()
-            return None
-        return contents.pop()
+        if self.hasContents():
+            return contents.pop()
+        return None
+        
+    def __len__(self):
+        """ Returns the length of the Deck """
+        return len(self.__contents__)
