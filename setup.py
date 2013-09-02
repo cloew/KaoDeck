@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='kao_deck',
-      version='1.0',
+      version='1.1',
       #description='Kao Tessur Deck Package',
       author='Chris Loew',
       author_email='cloew123@gmail.com',

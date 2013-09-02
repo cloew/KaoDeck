@@ -32,6 +32,6 @@ class DeckWithDiscardPile(Deck):
         if self.__reshuffle__ and not self.hasContents():
             if self.__reshuffle__:
                 self.shuffleInDiscardPile()
-            return Deck.__draw_one__(contents)
+            return Deck.__draw_one__(self, contents)
         else:
-            return Deck.__draw_one__(contents)
+            return Deck.__draw_one__(self, contents)
