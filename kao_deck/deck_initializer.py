@@ -1,21 +1,37 @@
 from copy import deepcopy
 
+class Entry:
+    """ Represents an entry in the Deck Initializer """
+    
+    def __init__(self, item, count=1):
+        """ Initialize the entry """
+        self.item = item
+        self.count = count
+        
+    def generateContents(self):
+        """ Generate the contents for the new deck """
+        contents = []
+        for i in range(self.count):
+            copy = deepcopy(self.item)
+            contents.append(copy)
+        return contents
+
 class DeckInitializer:
     """ A Helper class to initialize a deck with a set of cards """
     
     def __init__(self):
         """ Initialize the Deck Initializer """
-        self.__contents__ = []
+        self.__entries__ = []
     
-    def addSameItem(self, item, count):
+    def addItem(self, item, count=1):
         """ Adds count copies of the given item.
             This method creates count-1 deep copied versions of the given item """
-        self.__contents__.append(item)
-        for i in range(count-1):
-            copy = deepcopy(item)
-            self.__contents__.append(copy)
+        entry = Entry(item, count=count)
+        self.__entries__.append(entry)
         
-    @property
-    def contents(self):
-        """ Return the Deck Initializers Contents """
-        return self.__contents__
+    def generateContents(self):
+        """ Generate the contents for the new deck """
+        contents = []
+        for entry in self.__entries__:
+            contents += entry.generateContents()
+        return contents

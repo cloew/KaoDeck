@@ -8,7 +8,7 @@ class Deck:
         if items is not None:
             self.__contents__ = items
         elif deck_initializer is not None:
-            self.__contents__ = deck_initializer.contents
+            self.__contents__ = deck_initializer.generateContents()
         else:
             raise TypeError("No Item List or Deck Initializer provided")
       
