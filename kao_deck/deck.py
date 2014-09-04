@@ -20,6 +20,10 @@ class Deck:
         """ Add the items to the Deck """
         for item in items:
             self.__contents__.append(item)
+            
+    def remove(self, item):
+        """ Remove a item from the deck """
+        self.__contents__.remove(item)
         
     def peek(self):
         """ Peek at the top item of the deck """
