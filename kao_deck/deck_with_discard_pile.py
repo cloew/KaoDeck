@@ -15,7 +15,11 @@ class DeckWithDiscardPile(Deck):
         
     def discard(self, item):
         """ Discard the given item """
-        self.__discard_pile__.add([item])
+        self.discardAll([item])
+        
+    def discardAll(self, items):
+        """ Discard the given items """
+        self.__discard_pile__.add(items)
         
     def peekAtDiscardPile(self):
         """ Return the card on top of the discard pile """
