@@ -57,3 +57,7 @@ class Deck:
     def __len__(self):
         """ Returns the length of the Deck """
         return len(self.__contents__)
+        
+    def __iter__(self):
+        """ Return the Deck Iterator """
+        return self.__contents__.__iter__()
