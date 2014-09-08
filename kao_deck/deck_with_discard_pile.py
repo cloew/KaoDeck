@@ -31,6 +31,11 @@ class DeckWithDiscardPile(Deck):
         self.add(cards)
         self.shuffle()
         
+    @property
+    def discardPile(self):
+        """ Return the Deck's Discard Pile """
+        return self.__discard_pile__
+        
     def __draw_one__(self, contents):
         """ Draws a single item """
         if self.__reshuffle__ and not self.hasContents():
