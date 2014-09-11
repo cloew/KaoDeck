@@ -59,9 +59,11 @@ class Deck:
         return len(self.__contents__)
         
     def __getitem__(self, index):
-        """ Return the item at the given index """
-        return self.__contents__[index]
+        """ Return the item at the given index from the top of the deck """
+        return self.__contents__[-1*index]
         
     def __iter__(self):
         """ Return the Deck Iterator """
-        return self.__contents__.__iter__()
+        reversedContents = list(self.__contents__)
+        reversedContents.reverse()
+        return reversedContents.__iter__()
