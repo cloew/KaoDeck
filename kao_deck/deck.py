@@ -10,7 +10,7 @@ class Deck:
         elif deck_initializer is not None:
             self.__contents__ = deck_initializer.generateContents()
         else:
-            raise TypeError("No Item List or Deck Initializer provided")
+            self.__contents__ = []
       
     def draw(self, count=1):
         """ Returns a list of items removed from the top of the deck """

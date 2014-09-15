@@ -6,7 +6,7 @@ class DeckWithDiscardPile(Deck):
     def __init__(self, items=None, deck_initializer=None, reshuffle=False):
         """ Initialize the Deck With a Discard Pile """
         Deck.__init__(self, items, deck_initializer)
-        self.__discard_pile__ = Deck([])
+        self.__discard_pile__ = Deck()
         self.__reshuffle__ = reshuffle
         
     def drawFromDiscardPile(self, count=1):
