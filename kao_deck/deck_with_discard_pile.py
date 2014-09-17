@@ -38,9 +38,22 @@ class DeckWithDiscardPile(Deck):
         
     def __draw_one__(self, contents):
         """ Draws a single item """
+        self.checkReshuffle()
+        return Deck.__draw_one__(self, contents)
+        
+    def availableLength(self):
+        """ Returns the length of the Deck and Discard Pile """
+        length = len(self)
+        if self.__reshuffle__:
+            length += len(self.__discard_pile__)
+        return length
+        
+    def __getitem__(self, index):
+        """ Return the item at the given index from the top of the deck """
+        self.checkReshuffle()
+        return Deck.__getitem__(self, index)
+        
+    def checkReshuffle(self):
+        """ Check if you need to reshuffle the deck """
         if self.__reshuffle__ and not self.hasContents():
-            if self.__reshuffle__:
-                self.shuffleInDiscardPile()
-            return Deck.__draw_one__(self, contents)
-        else:
-            return Deck.__draw_one__(self, contents)
+            self.shuffleInDiscardPile()
