@@ -60,10 +60,14 @@ class Deck:
         
     def __getitem__(self, index):
         """ Return the item at the given index from the top of the deck """
-        return self.__contents__[-1*index]
+        return self.__get_reversed_contents__()[index]
         
     def __iter__(self):
         """ Return the Deck Iterator """
+        return self.__get_reversed_contents__().__iter__()
+        
+    def __get_reversed_contents__(self):
+        """ Helper method to return the contents as a list where the first index is the top of the deck """
         reversedContents = list(self.__contents__)
         reversedContents.reverse()
-        return reversedContents.__iter__()
+        return reversedContents
