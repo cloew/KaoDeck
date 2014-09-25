@@ -21,6 +21,10 @@ class Deck:
         for item in items:
             self.__contents__.append(item)
             
+    def putOnBottom(self, item):
+        """ Put the item on the bottom of the deck """
+        self.__contents__ = [item] + self.__contents__
+            
     def remove(self, item):
         """ Remove a item from the deck """
         self.__contents__.remove(item)
