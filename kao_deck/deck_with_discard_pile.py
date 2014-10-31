@@ -26,10 +26,11 @@ class DeckWithDiscardPile(Deck):
         return self.__discard_pile__.peek()
             
     def shuffleInDiscardPile(self):
-        """ Shuffle the contents of the discard pile onto the deck """
+        """ Shuffle the contents of the discard pile onto the bottom of the deck """
+        self.__discard_pile__.shuffle()
         cards = self.drawFromDiscardPile(count=len(self.__discard_pile__))
-        self.add(cards)
-        self.shuffle()
+        for card in cards:
+            self.putOnBottom(card)
         
     @property
     def discardPile(self):
@@ -50,10 +51,14 @@ class DeckWithDiscardPile(Deck):
         
     def __getitem__(self, index):
         """ Return the item at the given index from the top of the deck """
-        self.checkReshuffle()
+        requiredLength = 1
+        if hasattr(index, "stop"):
+            requiredLength = index.stop
+        self.checkReshuffle(requiredLength=requiredLength)
+        
         return Deck.__getitem__(self, index)
         
-    def checkReshuffle(self):
+    def checkReshuffle(self, requiredLength=1):
         """ Check if you need to reshuffle the deck """
-        if self.__reshuffle__ and not self.hasContents():
+        if self.__reshuffle__ and len(self) < requiredLength:
             self.shuffleInDiscardPile()
