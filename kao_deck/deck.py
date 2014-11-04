@@ -23,7 +23,7 @@ class Deck:
             
     def putOnBottom(self, item):
         """ Put the item on the bottom of the deck """
-        self.__contents__ = [item] + self.__contents__
+        self.__contents__[0:0] = [item]
             
     def remove(self, item):
         """ Remove a item from the deck """

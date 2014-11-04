@@ -29,8 +29,9 @@ class DeckWithDiscardPile(Deck):
         """ Shuffle the contents of the discard pile onto the bottom of the deck """
         self.__discard_pile__.shuffle()
         cards = self.drawFromDiscardPile(count=len(self.__discard_pile__))
-        for card in cards:
-            self.putOnBottom(card)
+        self.__contents__[0:0] = cards
+        # for card in cards:
+            # self.putOnBottom(card)
         
     @property
     def discardPile(self):
