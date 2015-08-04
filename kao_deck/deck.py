@@ -75,3 +75,7 @@ class Deck:
         reversedContents = list(self.__contents__)
         reversedContents.reverse()
         return reversedContents
+        
+    def __repr__(self):
+        """ Return the string representation of this """
+        return "<Deck({0})>".format([item for item in self])
