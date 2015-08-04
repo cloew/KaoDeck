@@ -1,4 +1,4 @@
-from kao_deck.deck import Deck
+from .deck import Deck
 
 class DeckWithDiscardPile(Deck):
     """ Represents a Deck with a discard pile """
