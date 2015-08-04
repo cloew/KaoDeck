@@ -3,11 +3,12 @@ from .deck import Deck
 class DeckWithDiscardPile(Deck):
     """ Represents a Deck with a discard pile """
     
-    def __init__(self, items=None, deck_initializer=None, reshuffle=False):
+    def __init__(self, items=None, deck_initializer=None, reshuffle=False, onReshuffle=None):
         """ Initialize the Deck With a Discard Pile """
         Deck.__init__(self, items, deck_initializer)
         self.__discard_pile__ = Deck()
         self.__reshuffle__ = reshuffle
+        self.onReshuffle = onReshuffle
         
     def drawFromDiscardPile(self, count=1):
         """ Draw from the discard Pile """
@@ -63,3 +64,5 @@ class DeckWithDiscardPile(Deck):
         """ Check if you need to reshuffle the deck """
         if self.__reshuffle__ and len(self) < requiredLength:
             self.shuffleInDiscardPile()
+            if self.onReshuffle:
+                self.onReshuffle()
